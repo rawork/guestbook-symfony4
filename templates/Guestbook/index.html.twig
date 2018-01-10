@@ -1,0 +1,62 @@
+{# templates/Default/index.html.twig #}
+{% extends 'layout.html.twig' %}
+
+{% block title %}Guestbook{% endblock %}
+
+{% block body %}
+    <h1>Guestbook</h1>
+
+    <a href="{{ path('guestbook_create') }}" title="Create new Guestbook message" class="btn btn-success btn-create"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New message</a>
+
+    <h6><span>{{ totalMessages }}</span> messages found</h6>
+    {% if totalMessages > 0 %}
+    <table class="table table-striped table-hover" data-page="{{ currentPage }}">
+        <thead>
+        <tr>
+            <th class="col-md-1">#</th>
+            <th class="col-md-2"><a href="{{ path('guestbook', {page: currentPage, sort: 'username', order: sortTypes.username}) }}" title="order by username">UserName{% if sort == 'username' %} <span>{{ sortOrder|raw }}</span>{% endif %}</a></th>
+            <th class="col-md-2"><a href="{{ path('guestbook', {page: currentPage, sort: 'email', order: sortTypes.email}) }}" title="order by e-mail">E-mail{% if sort == 'email' %} <span>{{ sortOrder|raw }}</span>{% endif %}</a></th>
+            <th class="col-md-2">Homepage</th>
+            <th class="col-md-3">Message</th>
+            <th class="col-md-2"><a href="{{ path('guestbook', {page: currentPage, sort: 'id', order: sortTypes.id}) }}" title="sort by created">Created {% if sort == 'id' %} <span>{{ sortOrder|raw }}</span>{% endif %}</a></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for message in messages.getIterator() %}
+            <tr>
+                <td>{{ message.getId() }}</td>
+                <td>
+                    {{ message.getUsername() }}
+                    <br>
+                    <small>Browser: {{ message.getBrowser() }},<br>IP: {{ message.getIp() }}</small>
+                </td>
+                <td>{{ message.getEmail() }}</td>
+                <td><a target="_blank" href="{{ message.getHomepage() }}">{{ message.getHomepage() }}</a></td>
+                <td>{{ message.getMessage() }}</td>
+                <td>{{ message.getCreated()|date('d.m.Y H:i')  }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% if maxPages > 1 %}
+        <ul class="pagination pagination-sm">
+            {# `«` arrow  #}
+            <li {{ currentPage == 1 ? 'class="disabled"' }}>
+                <a href="{{ path('guestbook', {page: currentPage-1 < 1 ? 1 : currentPage-1, sort: sort, order: order}) }}">«</a>
+            </li>
+
+            {# Render each page number #}
+            {% for i in 1..maxPages %}
+                <li {{ currentPage == i ? 'class="active"' }}>
+                    <a href="{{ path('guestbook', {page: i, sort: sort, order: order}) }}">{{ i }}</a>
+                </li>
+            {% endfor %}
+
+            {# `»` arrow #}
+            <li {{ currentPage == maxPages ? 'class="disabled"' }}>
+                <a href="{{ path('guestbook', {page: currentPage+1 <= maxPages ? currentPage+1 : currentPage, sort: sort, order: order}) }}">»</a>
+            </li>
+        </ul>
+    {% endif %}
+    {% endif %}
+{% endblock %}

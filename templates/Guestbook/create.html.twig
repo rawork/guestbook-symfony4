@@ -1,0 +1,15 @@
+{{ form_start(formview, {action: path('guestbook_create'), attr: {class: 'guestbook-create', novalidate: 'novalidate'}}) }}
+{{ form_widget(formview) }}
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<div class="form-group">
+    <div class="col-lg-offset-3 col-lg-9">
+        <div class="g-recaptcha" data-sitekey="6Ld2HEAUAAAAAF7E5f9HPgNQvrQ6rGvXxsrfFcrh"></div>
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-lg-offset-3 col-lg-9">
+        <a href="#" class="btn btn-default btn-cancel">Cancel</a>
+        <button type="submit" class="btn btn-success">Save</button>
+    </div>
+</div>
+{{ form_end(formview) }}
