@@ -8,7 +8,7 @@ $('.btn-create').on('click', function (e) {
         if (!data.error) {
           $('.modal-body').html(data.form)
           $('#myModal').modal('show')
-          console.log('opened modal')
+          // console.log('opened modal')
         }
     }, 'json');
 })
@@ -45,7 +45,7 @@ $(document).on('submit', '.guestbook-create', function(e) {
     contentType: false,
     type: 'POST',
     success: function(data){
-      console.log(data)
+      // console.log(data)
       if (data.error) {
         $('.modal-body').html(data.form)
         // $form.siblings('.alert').remove()
@@ -85,5 +85,5 @@ $(document).on('submit', '.guestbook-create', function(e) {
 })
 
 $(document).ready(function () {
-    console.log('test app.js')
+    console.log('test guestbook app.js')
 })
