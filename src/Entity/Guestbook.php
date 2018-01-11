@@ -23,7 +23,7 @@ class Guestbook
      *
      * @ORM\Column(name="username", type="string", length=190)
      * @Assert\NotBlank()
-     * @Assert\Regex("/^[a-zA-Z0-9]+/")
+     * @Assert\Regex("/^[a-zA-Z0-9]+/", message="Should contains only numbers & latin characters")
      */
     private $username;
 

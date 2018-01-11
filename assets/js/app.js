@@ -73,7 +73,7 @@ $(document).on('submit', '.guestbook-create', function(e) {
 
       let $table = $('.table').prepend($tr.get(0).outerHTML)
       $('h6>span').html(+$('h6>span').html()+1)
-      if ($table.find('tr').length > 5) {
+      if ($table.find('tr').length > 25) {
         $table.find('tr:last-child').remove()
       }
       $form.find('input, textarea').val('')

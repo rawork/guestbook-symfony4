@@ -30,7 +30,7 @@ class GuestbookController extends Controller
             ->getRepository(Guestbook::class)
             ->getAllMessages($page, $sort, $order, $this->container->getParameter('guestbook.rpp'));
         $totalMessages = $messages->count();
-        $maxPages = ceil($messages->count() / 5);
+        $maxPages = ceil($messages->count() / 25);
         $currentPage = $page;
         $sortOrder = $order == 'DESC' ? '&darr;' : '&uarr;';
 
