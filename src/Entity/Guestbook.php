@@ -39,7 +39,7 @@ class Guestbook
     /**
      * @var string
      *
-     * @ORM\Column(name="homepage", type="string", length=255)
+     * @ORM\Column(name="homepage", type="string", length=255, nullable=true)
      * @Assert\Url()
      */
     private $homepage;
