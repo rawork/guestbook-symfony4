@@ -126,7 +126,7 @@ class Guestbook
      */
     public function getHomepage()
     {
-        return $this->homepage;
+        return (string)$this->homepage;
     }
 
     /**
